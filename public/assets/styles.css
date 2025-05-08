@@ -17,7 +17,8 @@
     width: 100%;
     background: rgba(0, 0, 0, 0.8);
     padding: 15px;
-    text-align: left;
+    display: flex;
+    align-items: center;
     z-index: 1000;
   }
   
@@ -42,6 +43,10 @@
     /* space between icon and text */
     margin-right: 0.5rem;
     /* you can tweak size via fa-lg/fa-2x, etc. */
+  }
+
+  .navbar .resume-link {
+    margin-left: auto;
   }
   
   /* if you’re using self‑hosted SVGs with class .nav-icon: */
