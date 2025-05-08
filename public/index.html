@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nicholas Yap • Portfolio</title>
+  <meta name="description" content="Hi, NUS. An Information Security student in NUS." />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Hi, I'm <span class="highlight">Nicholas</span></h1>
+      <p>An NUS Student currently studying Information Security (InfoSec) in <span class="emphasis">NUS</span>.</p>
+      <a href="#contact" class="btn">Get in Touch</a>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="skills">
+      <h2>Programming Skills</h2>
+      <ul class="skill-grid">
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>C</li>
+        <li>Next.js</li>
+        <li>CSS</li>
+        <li>HTML</li>
+      </ul>
+    </section>
+
+    <!-- Tools -->
+    <section id="tools" class="tools">
+      <h2>Tools</h2>
+      <ul class="tools-grid">
+        <li>WireShark</li>
+        <li>BurpSuite</li>
+        <li>John the Ripper</li>
+        <li>gdb</li>
+      </ul>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects">
+      <h2>Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <img src="images/CollabSync.png" alt="CollabSync Screenshot"/>
+          <h3>CollabSync</h3>
+          <p>Led a team of four to develop a contact book for NUS Students</p>
+          <a href="https://github.com/AY2425S2-CS2103T-F10-3/tp">View on GitHub →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+      <h2>Contact Me</h2>
+      <form action="mailto:nicholasyapcheeang@u.nus.edu" method="POST" enctype="text/plain">
+        <input type="text"   name="Name"    placeholder="Your Name" required />
+        <input type="email"  name="Email"   placeholder="Your Email" required />
+        <textarea name="Message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      © <span id="year"></span> Website developed by Nicholas Yap. All rights reserved.
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
