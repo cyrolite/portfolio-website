@@ -12,24 +12,58 @@
 
   /* Navigation Bar */
   .navbar {
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 15px;
-      text-align: left;
-      z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    text-align: left;
+    z-index: 1000;
   }
-
+  
+  /* make links flex‐containers so icon + text line up */
   .navbar a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.2em;
-      margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin: 0 15px;
+  
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  
+  .navbar a:hover {
+    color: yellow;
+  }
+  
+  /* if you’re using Font Awesome <i> tags: */
+  .navbar a i {
+    /* space between icon and text */
+    margin-right: 0.5rem;
+    /* you can tweak size via fa-lg/fa-2x, etc. */
+  }
+  
+  /* if you’re using self‑hosted SVGs with class .nav-icon: */
+  .nav-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    transition: transform 0.2s;
+  }
+  
+  .navbar a:hover .nav-icon {
+    transform: scale(1.1);
   }
 
-  .navbar a:hover {
-      color: yellow;
+  .navbar a .nav-icon,
+  .navbar a i {
+    width: 24px;
+    height: 24px;
+    display: inline-block;      /* ensure width/height take effect */
+    vertical-align: middle;     /* align to text baseline */
+    object-fit: contain;        /* for <img> SVGs, preserve aspect ratio */
   }
   
   /* Utility */
