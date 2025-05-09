@@ -21,7 +21,81 @@
     align-items: center;
     z-index: 1000;
   }
+
+  .navbar .dropdown {
+    margin-left: auto;
+    position: relative;
+  }
+
+  .dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+
+  .dropbtn:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+  }
   
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: rgba(0,0,0,0.9);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    min-width: 200px;
+    z-index: 1001;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content > a,
+  .dropdown-content .sub-menu > span {
+    color: white;
+    padding: 0.5rem 1rem;
+    display: block;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .sub-menu {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .sub-menu .menu-label {
+    font-size: 0.9em;
+    margin-left: 0.5rem;
+  }
+
+  .sub-menu a {
+    padding-left: 2rem;
+    font-size: 0.9em;
+  }
+
+  .dropdown-content a {
+    display: block;
+    width: 85%;
+    box-sizing: border-box;
+    padding: 0.75rem 1rem;
+  }
+
+  .dropdown-content a {
+    text-align: left;
+  }
+
+  .dropdown-content a:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+  }
+
   /* make links flex‐containers so icon + text line up */
   .navbar a {
     color: white;
@@ -43,10 +117,6 @@
     /* space between icon and text */
     margin-right: 0.5rem;
     /* you can tweak size via fa-lg/fa-2x, etc. */
-  }
-
-  .navbar .resume-link {
-    margin-left: auto;
   }
   
   /* if you’re using self‑hosted SVGs with class .nav-icon: */
