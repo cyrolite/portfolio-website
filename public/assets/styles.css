@@ -280,3 +280,24 @@
     font-size: 0.875rem;
   }
   
+  .pdf-box {
+    max-width: 800px;
+    width: 90%;
+    margin: 2rem auto;
+
+    aspect-ratio: 1 / 1.414;  
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+    overflow: hidden;
+  }
+
+  .pdf-box.landscape {
+    aspect-ratio: 1.414 / 1;
+  }
+
+  .pdf-embed {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }

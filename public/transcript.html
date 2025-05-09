@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Resume Preview</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="navbar">
+    <a href="index.html"> Back to Main Page  </a>
+    <a href="https://www.linkedin.com/in/nicholas-yap-b6069b20b/" target="_blank">
+      <img src="icons/LI-In-Bug.png" alt="LinkedIn" class="nav-icon" /> LinkedIn
+    </a>
+    <a href="https://github.com/cyrolite">
+      <img src="icons/github-mark.svg"   alt="GitHub"   class="nav-icon" /> GitHub
+    </a>
+    <div class="dropdown">
+      <button class="dropbtn">About Me</button>
+      <div class="dropdown-content">
+        <a href="resume.html">Resume</a>
+        <a href="transcript.html">Transcript</a>
+        <a href="index.html" target="_blank">Tuition Feedbacks</a>
+        <a href="index.html" target="_blank">
+          Miscellaneous Achievements
+        </a>
+      </div>
+    </div>
+  </div>
+  <main>
+  <div class="pdf-box landscape">
+    <embed
+      src="assets/transcript.pdf"
+      type="application/pdf"
+      class="pdf-embed"
+    >
+  </div>
+    <div style="text-align:center; margin:1rem 0;">
+      <a href="assets/transcript.pdf" download class="btn">
+        Download Transcript
+    </a>
+  </div>
+  </main>
+</body>
+</html>
