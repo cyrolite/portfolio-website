@@ -21,7 +21,7 @@ export default function ProjectCard({title,description,stack,link}){
         border
         border-green-400/20
         rounded-xl
-        p-6
+        p-4
         font-mono
         hover:border-green-400/60
         transition
@@ -49,7 +49,7 @@ export default function ProjectCard({title,description,stack,link}){
 
 
       <h3 className="
-        text-2xl
+        text-xl
         font-bold
         text-white
       ">

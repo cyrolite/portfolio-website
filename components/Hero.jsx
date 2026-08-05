@@ -252,6 +252,20 @@ export default function Hero(){
                 flex-col
                 gap-3
               ">
+                
+                <button
+                onClick={()=>{
+                    navigate("about")
+                }}
+                className="
+                    text-white
+                    hover:text-green-400
+                    text-left
+                    cursor-pointer
+                "
+                >
+                About Me
+                </button>
 
                 <button
                   onClick={()=>{

@@ -50,3 +50,12 @@ html{
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(34,197,94,0.9);
 }
+
+html{
+  scroll-behavior:smooth;
+  scroll-snap-type:y mandatory;
+}
+
+section{
+  scroll-snap-align:start;
+}

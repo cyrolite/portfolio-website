@@ -7,6 +7,7 @@ import Skills from "@/components/Skills"
 import Projects from "@/components/Projects"
 import Contact from "@/components/Contact"
 import PageTransition from "@/components/PageTransition"
+import About from "@/components/About"
 import { TransitionProvider } from "@/components/TransitionContext"
 
 export default function Home(){
@@ -26,18 +27,58 @@ export default function Home(){
               <Hero/>
             </section>
 
+            <section 
+              id="about"
+              className="
+                h-screen
+                flex
+                flex-col
+                justify-center
+                overflow-hidden
+              "
+            >
+              <About/>
+            </section>
 
-            <section id="skills" className="min-h-screen flex flex-col justify-center">
+
+            <section 
+              id="skills"
+              className="
+                h-screen
+                flex
+                flex-col
+                justify-center
+                overflow-hidden
+              "
+            >
               <Skills/>
             </section>
 
 
-            <section id="projects" className="min-h-screen flex items-center justify-center">
+            <section
+              id="projects"
+              className="
+                min-h-screen
+                flex
+                flex-col
+                justify-center
+                py-20
+              "
+            >
               <Projects/>
             </section>
 
 
-            <section id="contact" className="min-h-screen flex items-center justify-center">
+            <section
+              id="contact"
+              className="
+                h-screen
+                flex
+                flex-col
+                justify-center
+                overflow-hidden
+              "
+            >
               <Contact/>
             </section>
 
