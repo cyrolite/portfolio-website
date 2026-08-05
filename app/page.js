@@ -6,39 +6,47 @@ import Hero from "@/components/Hero"
 import Skills from "@/components/Skills"
 import Projects from "@/components/Projects"
 import Contact from "@/components/Contact"
+import PageTransition from "@/components/PageTransition"
+import { TransitionProvider } from "@/components/TransitionContext"
 
 export default function Home(){
 
   return(
-    <Loader>
-      <Background/>
+    <TransitionProvider>
+      <Loader>
+        <Background/>
 
-      <Navbar/>
+        <Navbar/>
 
-      <main>
+        <main>
 
-        <section id="home" className="min-h-screen">
-          <Hero/>
-        </section>
+          <PageTransition>
 
-
-        <section id="skills" className="min-h-screen flex flex-col justify-center">
-          <Skills/>
-        </section>
+            <section id="home" className="min-h-screen">
+              <Hero/>
+            </section>
 
 
-        <section id="projects" className="min-h-screen flex items-center justify-center">
-          <Projects/>
-        </section>
+            <section id="skills" className="min-h-screen flex flex-col justify-center">
+              <Skills/>
+            </section>
 
 
-        <section id="contact" className="min-h-screen flex items-center justify-center">
-          <Contact/>
-        </section>
+            <section id="projects" className="min-h-screen flex items-center justify-center">
+              <Projects/>
+            </section>
 
-      </main>
 
-      <Terminal/>
-    </Loader>
+            <section id="contact" className="min-h-screen flex items-center justify-center">
+              <Contact/>
+            </section>
+
+          </PageTransition>
+
+        </main>
+
+        <Terminal/>
+      </Loader>
+    </TransitionProvider>
   )
 }

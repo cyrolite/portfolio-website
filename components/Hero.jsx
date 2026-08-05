@@ -3,10 +3,17 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
+import { useTransition } from "./TransitionContext"
 
 export default function Hero(){
 
   const [showMenu,setShowMenu] = useState(false)
+
+  const {
+    navigate,
+    isTransitioning,
+    completeTransition
+  } = useTransition()
 
   return(
     <section className="
@@ -24,12 +31,17 @@ export default function Hero(){
           y:40
         }}
         animate={{
-          opacity:1,
-          y:0,
+          opacity: isTransitioning ? 0 : 1,
+          y: isTransitioning ? -80 : 0,
           x: showMenu ? -120 : 0
         }}
         transition={{
           duration:0.8
+        }}
+        onAnimationComplete={()=>{
+            if(isTransitioning){
+                completeTransition()
+            }
         }}
         className="
           w-full
@@ -128,8 +140,8 @@ export default function Hero(){
           flex-wrap
         ">
 
-          <a
-            href="#projects"
+          <button
+            onClick={()=>navigate("projects")}
             className="
               px-6
               py-3
@@ -143,11 +155,11 @@ export default function Hero(){
             "
           >
             View Projects
-          </a>
+          </button>
 
 
-          <a
-            href="#contact"
+          <button
+            onClick={()=>navigate("contact")}
             className="
               px-6
               py-3
@@ -160,7 +172,7 @@ export default function Hero(){
             "
           >
             Contact Me
-          </a>
+          </button>
 
         </div>
 
@@ -223,6 +235,7 @@ export default function Hero(){
                 backdrop-blur-md
                 p-6
                 font-mono
+                z-50
               "
             >
 
@@ -240,40 +253,49 @@ export default function Hero(){
                 gap-3
               ">
 
-                <a
-                  href="#skills"
-                  onClick={()=>setShowMenu(false)}
+                <button
+                  onClick={()=>{
+                    navigate("skills")
+                  }}
                   className="
                     text-white
                     hover:text-green-400
+                    text-left
+                    cursor-pointer
                   "
                 >
                   Skills
-                </a>
+                </button>
 
 
-                <a
-                  href="#projects"
-                  onClick={()=>setShowMenu(false)}
+                <button
+                  onClick={()=>{
+                    navigate("projects")
+                  }}
                   className="
                     text-white
                     hover:text-green-400
+                    text-left
+                    cursor-pointer
                   "
                 >
                   Projects
-                </a>
+                </button>
 
 
-                <a
-                  href="#contact"
-                  onClick={()=>setShowMenu(false)}
+                <button
+                  onClick={()=>{
+                    navigate("contact")
+                  }}
                   className="
                     text-white
                     hover:text-green-400
+                    text-left
+                    cursor-pointer
                   "
                 >
                   Contact
-                </a>
+                </button>
 
               </div>
 
