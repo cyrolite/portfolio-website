@@ -1,3 +1,4 @@
+import Loader from "@/components/Loader"
 import Background from "@/components/Background"
 import Terminal from "@/components/Terminal"
 import Navbar from "@/components/Navbar"
@@ -10,7 +11,7 @@ import Contact from "@/components/Contact"
 export default function Home(){
 
   return(
-    <>
+    <Loader>
       <Background/>
 
       <Navbar/>
@@ -24,6 +25,6 @@ export default function Home(){
       </main>
 
       <Terminal/>
-    </>
+    </Loader>
   )
 }
