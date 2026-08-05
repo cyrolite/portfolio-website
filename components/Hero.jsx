@@ -1,12 +1,16 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 
 export default function Hero(){
 
+  const [showMenu,setShowMenu] = useState(false)
+
   return(
     <section className="
+      relative
       min-h-screen
       flex
       items-center
@@ -21,7 +25,8 @@ export default function Hero(){
         }}
         animate={{
           opacity:1,
-          y:0
+          y:0,
+          x: showMenu ? -120 : 0
         }}
         transition={{
           duration:0.8
@@ -160,7 +165,125 @@ export default function Hero(){
         </div>
 
 
+        <button
+          onClick={()=>setShowMenu(!showMenu)}
+          className="
+            absolute
+            right-10
+            top-1/2
+            -translate-y-1/2
+            text-green-400
+            text-3xl
+            animate-bounce
+            cursor-pointer
+          "
+        >
+          {showMenu ? "←" : "→"}
+        </button>
+
+
       </motion.div>
+
+
+      <AnimatePresence>
+
+        {
+          showMenu && (
+
+            <motion.div
+              initial={{
+                opacity:0,
+                x:80
+              }}
+
+              animate={{
+                opacity:1,
+                x:0
+              }}
+
+              exit={{
+                opacity:0,
+                x:80
+              }}
+
+              transition={{
+                duration:0.4
+              }}
+
+              className="
+                absolute
+                right-10
+                top-1/2
+                -translate-y-1/2
+                w-64
+                rounded-xl
+                border
+                border-green-400/20
+                bg-black/70
+                backdrop-blur-md
+                p-6
+                font-mono
+              "
+            >
+
+              <p className="
+                text-green-400
+                mb-4
+              ">
+                Navigate
+              </p>
+
+
+              <div className="
+                flex
+                flex-col
+                gap-3
+              ">
+
+                <a
+                  href="#skills"
+                  onClick={()=>setShowMenu(false)}
+                  className="
+                    text-white
+                    hover:text-green-400
+                  "
+                >
+                  Skills
+                </a>
+
+
+                <a
+                  href="#projects"
+                  onClick={()=>setShowMenu(false)}
+                  className="
+                    text-white
+                    hover:text-green-400
+                  "
+                >
+                  Projects
+                </a>
+
+
+                <a
+                  href="#contact"
+                  onClick={()=>setShowMenu(false)}
+                  className="
+                    text-white
+                    hover:text-green-400
+                  "
+                >
+                  Contact
+                </a>
+
+              </div>
+
+            </motion.div>
+
+          )
+        }
+
+      </AnimatePresence>
+
 
     </section>
   )

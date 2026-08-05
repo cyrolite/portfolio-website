@@ -4,16 +4,22 @@ export default function Projects(){
 
   const projects=[
     {
-      title:"ATERNA",
+      title:"AI Vulnerability Analyser",
       description:"AI-powered vulnerability analysis assistant that combines reconnaissance, CVE analysis and remediation guidance.",
       stack:"Python • LLM • Cybersecurity",
-      link:"https://github.com/cyrolite"
+      link:"https://github.com/cyrolite/vulnerability_ai_chatbot"
     },
     {
       title:"Packet Sniffer",
       description:"A network packet inspection tool designed to capture and analyse network traffic.",
       stack:"Python • Networking • Security",
       link:"https://github.com/cyrolite/packet_sniffer"
+    },
+    {
+        title:"File Encrypter",
+        description:"A secure file encryption application implementing AES-256 encryption and SHA-256 integrity verification.",
+        stack:"Java • AES-256 • Cryptography",
+        link:"https://github.com/cyrolite/file-encrypter"
     },
     {
       title:"CollabSync",

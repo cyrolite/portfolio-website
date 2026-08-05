@@ -4,7 +4,6 @@ import Terminal from "@/components/Terminal"
 import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
 import Skills from "@/components/Skills"
-import Tools from "@/components/Tools"
 import Projects from "@/components/Projects"
 import Contact from "@/components/Contact"
 
@@ -17,11 +16,26 @@ export default function Home(){
       <Navbar/>
 
       <main>
-        <Hero/>
-        <Skills/>
-        <Tools/>
-        <Projects/>
-        <Contact/>
+
+        <section id="home" className="min-h-screen">
+          <Hero/>
+        </section>
+
+
+        <section id="skills" className="min-h-screen flex flex-col justify-center">
+          <Skills/>
+        </section>
+
+
+        <section id="projects" className="min-h-screen flex items-center justify-center">
+          <Projects/>
+        </section>
+
+
+        <section id="contact" className="min-h-screen flex items-center justify-center">
+          <Contact/>
+        </section>
+
       </main>
 
       <Terminal/>
