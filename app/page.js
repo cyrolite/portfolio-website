@@ -1,4 +1,5 @@
 import Background from "@/components/Background"
+import Terminal from "@/components/Terminal"
 import Navbar from "@/components/Navbar"
 import Hero from "@/components/Hero"
 import Skills from "@/components/Skills"
@@ -11,7 +12,7 @@ export default function Home(){
   return(
     <>
       <Background/>
-      
+
       <Navbar/>
 
       <main>
@@ -21,6 +22,8 @@ export default function Home(){
         <Projects/>
         <Contact/>
       </main>
+
+      <Terminal/>
     </>
   )
 }
