@@ -35,6 +35,10 @@ function WindowContent({app}){
     return <Contact/>
   }
 
+  if(app.page === "terminal"){
+    return <Terminal id={app.id}/>
+  }
+
 
   return null
 
@@ -111,7 +115,6 @@ function MainContent(){
         ))
       }
 
-      <Terminal/>
     </Loader>
   )
 }

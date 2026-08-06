@@ -68,6 +68,8 @@ export default function OSWindow({
         backdrop-blur-md
         shadow-2xl
         overflow-hidden
+        flex
+        flex-col
 
         ${
           maximized
@@ -196,9 +198,9 @@ export default function OSWindow({
 
       <div
         className="
+          flex-1
           p-6
           overflow-auto
-          h-[calc(100%-3rem)]
           text-zinc-300
         "
       >

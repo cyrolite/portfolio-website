@@ -32,6 +32,11 @@ export default function StartMenu(){
       name:"Contact",
       icon:"✉️",
       page:"contact"
+    },
+    {
+      name:"Terminal",
+      icon:"💻",
+      page:"terminal"
     }
   ]
 

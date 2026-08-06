@@ -2,224 +2,263 @@
 
 import { useState, useRef, useEffect } from "react"
 import { commands } from "./terminalCommands"
+import { useTransition } from "./TransitionContext"
 
-export default function Terminal(){
+export default function Terminal({id}){
 
-  const [open,setOpen]=useState(false)
   const [input,setInput]=useState("")
+
   const [history,setHistory]=useState([
     "Welcome to Nicholas' portfolio terminal.",
     "Type 'help' to see available commands."
   ])
 
   const [isTyping,setIsTyping]=useState(false)
-  useEffect(()=>{
-      bottomRef.current?.scrollIntoView({
-          behavior:"smooth"
-      })
-  },[history])
+
+
   const inputRef = useRef(null)
   const bottomRef = useRef(null)
 
+  const {
+    closeWindow
+  }=useTransition()
+
+
+
+  useEffect(()=>{
+
+    inputRef.current?.focus()
+
+  },[])
+
+
+
+  useEffect(()=>{
+
+    bottomRef.current?.scrollIntoView({
+      behavior:"smooth"
+    })
+
+  },[history])
+
+
+
   function typeResponse(text){
+
     setIsTyping(true)
 
     let index=0
+
     const interval=setInterval(()=>{
-        setHistory(prev=>{
-            const copy=[...prev]
-            copy[copy.length-1]=text.slice(0,index)
 
-            return copy
-        })
+      setHistory(prev=>{
 
-        index++
+        const copy=[...prev]
 
-        if(index>text.length){
-            clearInterval(interval)
-            setIsTyping(false)
-            setTimeout(()=>{
-                inputRef.current?.focus()
-            },0)
-        }
+        copy[copy.length-1]=text.slice(0,index)
+
+        return copy
+
+      })
+
+
+      index++
+
+
+      if(index>text.length){
+
+        clearInterval(interval)
+
+        setIsTyping(false)
+
+        setTimeout(()=>{
+
+          inputRef.current?.focus()
+
+        },0)
+
+      }
+
+
     },20)
-    }
+
+  }
+
+
 
   function executeCommand(){
 
     const command=input.trim().toLowerCase()
 
-    let output=""
 
-    if(command==="clear"){
-        setHistory([])
-        setInput("")
-        return
+    if(!command){
+      return
     }
 
     if(command==="exit"){
-        setOpen(false)
-        return
+      closeWindow(id)
+      return
     }
 
-    output = commands[command] || `Command not found: ${command}`
 
-    if(command!=="clear" && command!=="exit"){
 
-    output =
-    `[system] processing request...
+    if(command==="clear"){
 
-    ${output}`
+      setHistory([])
+
+      setInput("")
+
+      return
 
     }
+
+
+
+    const output =
+      commands[command] ||
+      `Command not found: ${command}`
+
+
 
     setHistory(prev=>[
-    ...prev,
-    `nicholas@kali:~$ ${command}`,
-    ""
+
+      ...prev,
+
+      `nicholas@kali:~$ ${command}`,
+
+      ""
+
     ])
+
+
 
     setInput("")
 
-    typeResponse(output)
-
-  }
 
 
-  if(!open){
+    typeResponse(
+`[system] processing request...
 
-    return(
-      <button
-        onClick={()=>setOpen(true)}
-        className="
-          fixed
-          bottom-6
-          right-6
-          z-50
-          rounded-full
-          bg-green-500/20
-          border
-          border-green-400/40
-          px-5
-          py-3
-          text-green-300
-          font-mono
-          hover:bg-green-500/30
-        "
-      >
-        &gt;_
-      </button>
+${output}`
     )
 
   }
 
 
-  return(
-    <div className="
-      fixed
-      inset-0
-      z-50
-      flex
-      items-center
-      justify-center
-      bg-black/70
-      backdrop-blur-sm
-      px-6
-    ">
 
-      <div 
-        onClick={()=>{
-            inputRef.current?.focus()
-        }}
-        className="
+  return(
+
+    <div
+
+      onClick={()=>{
+
+        inputRef.current?.focus()
+
+      }}
+
+      className="
         w-full
-        max-w-3xl
-        h-[500px]
+        h-full
         bg-black
-        border
-        border-green-400/30
-        rounded-xl
-        p-6
         font-mono
         text-green-300
         overflow-hidden
-      ">
+        cursor-text
+      "
+
+    >
 
 
-        <div className="
-          flex
-          justify-between
-          mb-4
-        ">
+      <div
 
-          <span>
-            nicholas@kali:~
-          </span>
+        className="
+          h-full
+          overflow-y-auto
+          text-sm
+          no-scrollbar
+        "
 
-          <button
-            onClick={()=>setOpen(false)}
-          >
-            X
-          </button>
+      >
 
-        </div>
-
-
-        <div className="
-            h-[380px]
-            overflow-y-auto
-            text-sm
-            no-scrollbar
-        ">
 
         {
-        history.map((line,index)=>(
-            <pre key={index}>
-            {line}
+          history.map((line,index)=>(
+
+            <pre
+              key={index}
+              className="whitespace-pre-wrap"
+            >
+              {line}
             </pre>
-        ))
+
+          ))
         }
+
+
 
         <div ref={bottomRef}/>
 
-        {!isTyping && (
-        <pre>
-            <span className="font-bold">
-            nicholas@kali:~$
-            </span>
-
-            {" "}{input}
-
-            <span className="animate-pulse">
-            █
-            </span>
-        </pre>
-        )}
-
-        </div>
 
 
-        <input
-            ref={inputRef}
-            autoFocus
-            value={input}
-            disabled={isTyping}
-            onChange={(e)=>setInput(e.target.value)}
-            onKeyDown={(e)=>{
-                if(e.key==="Enter"){
-                    executeCommand()
-                }
-            }}
-            className="
-            absolute
-            opacity-0
-            "
-        />
+        {
+          !isTyping && (
+
+            <pre>
+
+              <span className="font-bold">
+                nicholas@kali:~$
+              </span>
+
+              {" "}
+
+              {input}
+
+              <span className="animate-pulse">
+                █
+              </span>
+
+            </pre>
+
+          )
+        }
 
 
       </div>
 
+
+
+      <input
+
+        ref={inputRef}
+
+        value={input}
+
+        disabled={isTyping}
+
+        onChange={(e)=>
+          setInput(e.target.value)
+        }
+
+        onKeyDown={(e)=>{
+
+          if(e.key==="Enter"){
+
+            executeCommand()
+
+          }
+
+        }}
+
+        className="
+          absolute
+          opacity-0
+        "
+
+      />
+
+
     </div>
+
   )
 
 }

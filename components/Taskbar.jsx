@@ -274,35 +274,6 @@ export default function Taskbar(){
         >
 
 
-          <a
-            href="https://github.com/cyrolite"
-            target="_blank"
-
-            className="
-              hover:text-green-400
-              transition
-            "
-          >
-
-            GitHub
-
-          </a>
-
-
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-
-            className="
-              hover:text-green-400
-              transition
-            "
-          >
-
-            LinkedIn
-
-          </a>
-
 
           <span>
 
