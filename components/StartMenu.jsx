@@ -5,7 +5,12 @@ import { useTransition } from "./TransitionContext"
 
 export default function StartMenu(){
 
-  const { navigate } = useTransition()
+  const {
+    navigate,
+    search,
+    setSearch
+  } = useTransition()
+
 
   const apps=[
     {
@@ -30,8 +35,15 @@ export default function StartMenu(){
     }
   ]
 
+
+  const filteredApps = apps.filter((app)=>
+    app.name.toLowerCase().includes(search.toLowerCase())
+  )
+
+
   return(
     <motion.div
+
       initial={{
         opacity:0,
         y:30,
@@ -70,23 +82,33 @@ export default function StartMenu(){
       "
     >
 
-      <div
+
+      <input
+
+        value={search}
+
+        onChange={(e)=>setSearch(e.target.value)}
+
+        placeholder="Search..."
+
         className="
           mb-5
           h-10
+          w-full
           rounded-lg
           bg-white/5
           border
           border-green-400/10
-          flex
-          items-center
           px-4
-          text-zinc-400
+          text-zinc-300
           text-sm
+          outline-none
+          placeholder:text-zinc-500
+          focus:border-green-400/40
         "
-      >
-        🔍 Search
-      </div>
+
+      />
+
 
 
       <p
@@ -100,6 +122,7 @@ export default function StartMenu(){
       </p>
 
 
+
       <div
         className="
           flex
@@ -109,11 +132,14 @@ export default function StartMenu(){
       >
 
         {
-          apps.map((app)=>(
+          filteredApps.map((app)=>(
 
             <button
+
               key={app.page}
+
               onClick={()=>navigate(app.page)}
+
               className="
                 flex
                 items-center
@@ -127,6 +153,7 @@ export default function StartMenu(){
                 transition
                 cursor-pointer
               "
+
             >
 
               <span>
@@ -142,7 +169,27 @@ export default function StartMenu(){
           ))
         }
 
+
+        {
+          filteredApps.length === 0 && (
+
+            <p
+              className="
+                text-zinc-500
+                text-sm
+                p-3
+              "
+            >
+              No applications found
+            </p>
+
+          )
+        }
+
+
       </div>
+
+
 
 
       <div
@@ -159,6 +206,7 @@ export default function StartMenu(){
         <a
           href="https://github.com/cyrolite"
           target="_blank"
+
           className="
             text-zinc-300
             hover:text-green-400
@@ -171,6 +219,7 @@ export default function StartMenu(){
         <a
           href="https://linkedin.com"
           target="_blank"
+
           className="
             text-zinc-300
             hover:text-green-400
@@ -178,6 +227,7 @@ export default function StartMenu(){
         >
           LinkedIn
         </a>
+
 
       </div>
 
