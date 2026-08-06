@@ -92,7 +92,7 @@ export default function Taskbar(){
         bottom-4
         left-1/2
         -translate-x-1/2
-        z-50
+        z-[100]
         w-[90%]
         max-w-5xl
       "

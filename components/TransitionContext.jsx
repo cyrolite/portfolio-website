@@ -15,6 +15,8 @@ export function TransitionProvider({ children }) {
 
   const [openWindows,setOpenWindows] = useState([])
 
+  const [activeWindow,setActiveWindow] = useState(null)
+
 
 
   function navigate(page){
@@ -49,6 +51,8 @@ export function TransitionProvider({ children }) {
 
       if(existing){
 
+        setActiveWindow(existing.id)
+
         return prev.map(window=>
           window.page === app.page
           ?
@@ -63,17 +67,31 @@ export function TransitionProvider({ children }) {
       }
 
 
+      const newWindow = {
+        ...app,
+        id:Date.now(),
+        minimized:false,
+        maximized:false
+      }
+
+
+      setActiveWindow(newWindow.id)
+
+
       return [
         ...prev,
-        {
-          ...app,
-          id:Date.now(),
-          minimized:false,
-          maximized:false
-        }
+        newWindow
       ]
 
     })
+
+  }
+
+
+
+  function focusWindow(id){
+
+    setActiveWindow(id)
 
   }
 
@@ -86,6 +104,11 @@ export function TransitionProvider({ children }) {
         window=>window.id !== id
       )
     )
+
+
+    if(activeWindow === id){
+      setActiveWindow(null)
+    }
 
   }
 
@@ -112,6 +135,11 @@ export function TransitionProvider({ children }) {
 
     )
 
+
+    if(activeWindow === id){
+      setActiveWindow(null)
+    }
+
   }
 
 
@@ -136,6 +164,9 @@ export function TransitionProvider({ children }) {
       )
 
     )
+
+
+    setActiveWindow(id)
 
   }
 
@@ -185,7 +216,10 @@ export function TransitionProvider({ children }) {
         closeWindow,
         minimizeWindow,
         restoreWindow,
-        maximizeWindow
+        maximizeWindow,
+
+        activeWindow,
+        focusWindow
 
       }}
 

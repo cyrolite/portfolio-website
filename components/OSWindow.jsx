@@ -1,8 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useTransition } from "./TransitionContext"
 
 export default function OSWindow({
+  id,
   title,
   children,
   onClose,
@@ -11,9 +13,25 @@ export default function OSWindow({
   maximized
 }){
 
+  const {
+    activeWindow,
+    focusWindow
+  } = useTransition()
+
+
+  const isActive = activeWindow === id
+
 
   return(
     <motion.div
+
+      onMouseDown={()=>{
+        focusWindow(id)
+      }}
+
+      drag={!maximized}
+
+      dragMomentum={false}
 
       initial={{
         opacity:0,
@@ -36,7 +54,13 @@ export default function OSWindow({
 
       className={`
         fixed
-        z-50
+        ${
+          isActive
+          ?
+          "z-[60]"
+          :
+          "z-40"
+        }
         rounded-xl
         border
         border-green-400/20
@@ -70,6 +94,7 @@ export default function OSWindow({
       {/* Header */}
 
       <div
+
         className="
           h-12
           flex
@@ -79,7 +104,9 @@ export default function OSWindow({
           border-green-400/20
           bg-black/50
           font-mono
+          cursor-move
         "
+
       >
 
 

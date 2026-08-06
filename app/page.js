@@ -82,13 +82,21 @@ function MainContent(){
 
               key={app.id}
 
+              id={app.id}
+
               title={app.name}
 
-              onClose={()=>closeWindow(app.id)}
+              onClose={()=>
+                closeWindow(app.id)
+              }
 
-              onMinimize={()=>minimizeWindow(app.id)}
+              onMinimize={()=>
+                minimizeWindow(app.id)
+              }
 
-              onMaximize={()=>maximizeWindow(app.id)}
+              onMaximize={()=>
+                maximizeWindow(app.id)
+              }
 
               maximized={app.maximized}
 
