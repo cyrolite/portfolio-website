@@ -63,3 +63,7 @@ section{
 html{
   scroll-behavior:smooth;
 }
+
+* {
+  cursor: none;
+}

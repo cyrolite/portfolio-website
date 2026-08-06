@@ -3,12 +3,13 @@
 import Loader from "@/components/Loader"
 import Background from "@/components/Background"
 import Terminal from "@/components/Terminal"
-import Navbar from "@/components/Navbar"
+import Taskbar from "@/components/Taskbar"
 import Hero from "@/components/Hero"
 import Skills from "@/components/Skills"
 import Projects from "@/components/Projects"
 import Contact from "@/components/Contact"
 import About from "@/components/About"
+import SystemCursor from "@/components/SystemCursor"
 import { TransitionProvider, useTransition } from "@/components/TransitionContext"
 import { AnimatePresence, motion } from "framer-motion"
 
@@ -18,9 +19,11 @@ function MainContent(){
 
   return(
     <Loader>
+      <SystemCursor/>
+      
       <Background/>
 
-      <Navbar/>
+      <Taskbar/>
 
       <main className="
         min-h-screen

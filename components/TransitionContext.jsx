@@ -7,29 +7,44 @@ const TransitionContext = createContext()
 export function TransitionProvider({ children }) {
 
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const [activePage, setActivePage] = useState("home") // NEW
+  const [activePage, setActivePage] = useState("home")
+  const [loading, setLoading] = useState(false)
+
 
   function navigate(page) {
+
+    setLoading(true)
     setIsTransitioning(true)
 
     setTimeout(() => {
-      setActivePage(page)      // switch page
+
+      setActivePage(page)
+
       setIsTransitioning(false)
-    }, 500) // match your animation timing
+
+      setTimeout(()=>{
+        setLoading(false)
+      },500)
+
+    },500)
+
   }
+
 
   return (
     <TransitionContext.Provider
       value={{
         isTransitioning,
         navigate,
-        activePage // expose this
+        activePage,
+        loading
       }}
     >
       {children}
     </TransitionContext.Provider>
   )
 }
+
 
 export function useTransition() {
   return useContext(TransitionContext)
