@@ -9,6 +9,7 @@ import Skills from "@/components/Skills"
 import Projects from "@/components/Projects"
 import Contact from "@/components/Contact"
 import About from "@/components/About"
+import Resume from "@/components/Resume"
 import SystemCursor from "@/components/SystemCursor"
 import OSWindow from "@/components/OSWindow"
 import { TransitionProvider, useTransition } from "@/components/TransitionContext"
@@ -37,6 +38,10 @@ function WindowContent({app}){
 
   if(app.page === "terminal"){
     return <Terminal id={app.id}/>
+  }
+
+  if(app.page === "resume"){
+    return <Resume/>
   }
 
 

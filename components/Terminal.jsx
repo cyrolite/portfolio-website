@@ -114,9 +114,34 @@ export default function Terminal({id}){
 
 
 
-    const output =
-      commands[command] ||
-      `Command not found: ${command}`
+    let output
+
+
+    if(command==="resume"){
+
+      const link=document.createElement("a")
+
+      link.href="/resume.pdf"
+
+      link.download="Nicholas_Yap_Resume.pdf"
+
+      document.body.appendChild(link)
+
+      link.click()
+
+      document.body.removeChild(link)
+
+
+      output="Resume downloaded."
+
+    }
+    else{
+
+      output =
+        commands[command] ||
+        `Command not found: ${command}`
+
+    }
 
 
 

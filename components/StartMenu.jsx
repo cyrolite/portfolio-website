@@ -37,6 +37,11 @@ export default function StartMenu(){
       name:"Terminal",
       icon:"💻",
       page:"terminal"
+    },
+    {
+      name:"Resume",
+      icon:"📄",
+      page:"resume"
     }
   ]
 
