@@ -1,36 +1,164 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nicholas Yap Portfolio Website
 
-## Getting Started
+Personal portfolio website built to showcase my background, projects, technical skills, and cybersecurity interests through an interactive OS-inspired interface.
 
-First, run the development server:
+Live website can be found [here](https://portfolio-website-h43xk526g-cyrolites-projects.vercel.app/).
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* Next.js
+* React
+* JavaScript
+* Tailwind CSS
+
+### UI / Animation
+
+* Framer Motion
+* React Type Animation
+
+### Deployment
+
+* Vercel
+
+---
+
+## ✨ Features
+
+* OS-inspired desktop interface
+* Interactive taskbar and start menu
+* Searchable applications
+* Multiple draggable windows
+* Window minimize/maximize/close functionality
+* Custom terminal interface
+* Resume PDF viewer
+* Responsive portfolio sections
+
+---
+
+## 📂 Applications
+
+The website is structured as a virtual desktop environment with different applications:
+
+* About Me
+* Skills
+* Projects
+* Contact
+* Resume
+* Terminal
+
+---
+
+## 📁 Project Structure
+
+```
+portfolio-website/
+│
+├── app/
+│   ├── page.js
+│   └── layout.js
+│
+├── components/
+│   ├── About.jsx
+│   ├── Background.jsx
+│   ├── Hero.jsx
+│   ├── Loader.jsx
+│   ├── OSWindow.jsx
+│   ├── Projects.jsx
+│   ├── Resume.jsx
+│   ├── Skills.jsx
+│   ├── StartMenu.jsx
+│   ├── Taskbar.jsx
+│   ├── Terminal.jsx
+│   ├── TransitionContext.jsx
+│   └── terminalCommands.js
+│
+├── public/
+│   └── resume.pdf
+│
+├── package.json
+└── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### Clone repository
+
+```bash
+git clone https://github.com/cyrolite/portfolio-website.git
+```
+
+### Navigate into project
+
+```bash
+cd portfolio-website
+```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🏗 Production Build
 
-To learn more about Next.js, take a look at the following resources:
+To create a production build:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+To start the production server:
 
-## Deploy on Vercel
+```bash
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Deployment
+
+This project is deployed using Vercel.
+
+Deployment workflow:
+
+```
+GitHub Repository
+        |
+        v
+      Vercel
+        |
+        v
+ Production Website
+```
+
+Changes pushed to the production branch automatically trigger a new deployment.
+
+---
+
+## 📌 Future Improvements
+
+* Additional desktop applications
+* More terminal commands
+* Improved mobile support
+* Additional interactive cybersecurity demonstrations
+* Enhanced window management features
