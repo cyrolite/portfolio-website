@@ -13,6 +13,9 @@ export function TransitionProvider({ children }) {
 
   const [search,setSearch] = useState("")
 
+  const [openWindows,setOpenWindows] = useState([])
+
+
 
   function navigate(page){
 
@@ -34,6 +37,135 @@ export function TransitionProvider({ children }) {
   }
 
 
+
+  function openApp(app){
+
+    setOpenWindows(prev=>{
+
+      const existing = prev.find(
+        window=>window.page === app.page
+      )
+
+
+      if(existing){
+
+        return prev.map(window=>
+          window.page === app.page
+          ?
+          {
+            ...window,
+            minimized:false
+          }
+          :
+          window
+        )
+
+      }
+
+
+      return [
+        ...prev,
+        {
+          ...app,
+          id:Date.now(),
+          minimized:false,
+          maximized:false
+        }
+      ]
+
+    })
+
+  }
+
+
+
+  function closeWindow(id){
+
+    setOpenWindows(prev=>
+      prev.filter(
+        window=>window.id !== id
+      )
+    )
+
+  }
+
+
+
+  function minimizeWindow(id){
+
+    setOpenWindows(prev=>
+
+      prev.map(window=>
+
+        window.id === id
+
+        ?
+        {
+          ...window,
+          minimized:true
+        }
+
+        :
+        window
+
+      )
+
+    )
+
+  }
+
+
+
+  function restoreWindow(id){
+
+    setOpenWindows(prev=>
+
+      prev.map(window=>
+
+        window.id === id
+
+        ?
+        {
+          ...window,
+          minimized:false
+        }
+
+        :
+        window
+
+      )
+
+    )
+
+  }
+
+
+
+  function maximizeWindow(id){
+
+    setOpenWindows(prev=>
+
+      prev.map(window=>
+
+        window.id === id
+
+        ?
+        {
+          ...window,
+          maximized:!window.maximized
+        }
+
+        :
+        window
+
+      )
+
+    )
+
+  }
+
+
+
   return(
     <TransitionContext.Provider
 
@@ -45,7 +177,15 @@ export function TransitionProvider({ children }) {
         loading,
 
         search,
-        setSearch
+        setSearch,
+
+        openWindows,
+        openApp,
+
+        closeWindow,
+        minimizeWindow,
+        restoreWindow,
+        maximizeWindow
 
       }}
 
@@ -56,6 +196,7 @@ export function TransitionProvider({ children }) {
     </TransitionContext.Provider>
   )
 }
+
 
 
 export function useTransition(){

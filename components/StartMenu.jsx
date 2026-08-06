@@ -6,7 +6,7 @@ import { useTransition } from "./TransitionContext"
 export default function StartMenu(){
 
   const {
-    navigate,
+    openApp,
     search,
     setSearch
   } = useTransition()
@@ -82,7 +82,6 @@ export default function StartMenu(){
       "
     >
 
-
       <input
 
         value={search}
@@ -110,7 +109,6 @@ export default function StartMenu(){
       />
 
 
-
       <p
         className="
           text-green-400
@@ -120,7 +118,6 @@ export default function StartMenu(){
       >
         Applications
       </p>
-
 
 
       <div
@@ -138,7 +135,7 @@ export default function StartMenu(){
 
               key={app.page}
 
-              onClick={()=>navigate(app.page)}
+              onClick={()=>openApp(app)}
 
               className="
                 flex
@@ -190,8 +187,6 @@ export default function StartMenu(){
       </div>
 
 
-
-
       <div
         className="
           border-t
@@ -227,7 +222,6 @@ export default function StartMenu(){
         >
           LinkedIn
         </a>
-
 
       </div>
 

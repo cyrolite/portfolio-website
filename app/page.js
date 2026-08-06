@@ -10,61 +10,98 @@ import Projects from "@/components/Projects"
 import Contact from "@/components/Contact"
 import About from "@/components/About"
 import SystemCursor from "@/components/SystemCursor"
+import OSWindow from "@/components/OSWindow"
 import { TransitionProvider, useTransition } from "@/components/TransitionContext"
-import { AnimatePresence, motion } from "framer-motion"
+
+
+function WindowContent({app}){
+
+  if(app.page === "about"){
+    return <About/>
+  }
+
+
+  if(app.page === "skills"){
+    return <Skills/>
+  }
+
+
+  if(app.page === "projects"){
+    return <Projects/>
+  }
+
+
+  if(app.page === "contact"){
+    return <Contact/>
+  }
+
+
+  return null
+
+}
+
+
 
 function MainContent(){
 
-  const { activePage } = useTransition()
+  const {
+    openWindows,
+    closeWindow,
+    minimizeWindow,
+    maximizeWindow
+  } = useTransition()
+
+
 
   return(
     <Loader>
       <SystemCursor/>
-      
+
       <Background/>
 
       <Taskbar/>
 
-      <main className="
-        min-h-screen
-      ">
 
-        <AnimatePresence mode="wait">
 
-          <motion.div
-            key={activePage}
-            initial={{
-              opacity:0,
-              y:40
-            }}
-            animate={{
-              opacity:1,
-              y:0
-            }}
-            exit={{
-              opacity:0,
-              y:-40
-            }}
-            transition={{
-              duration:0.5
-            }}
-            className="min-h-screen"
-          >
+      <main
+        className="
+          min-h-screen
+        "
+      >
 
-            {activePage === "home" && <Hero/>}
+        <Hero/>
 
-            {activePage === "about" && <About/>}
-
-            {activePage === "skills" && <Skills/>}
-
-            {activePage === "projects" && <Projects/>}
-
-            {activePage === "contact" && <Contact/>}
-
-          </motion.div>
-
-        </AnimatePresence>
       </main>
+
+      {
+        openWindows.map((app)=>(
+
+          !app.minimized && (
+
+            <OSWindow
+
+              key={app.id}
+
+              title={app.name}
+
+              onClose={()=>closeWindow(app.id)}
+
+              onMinimize={()=>minimizeWindow(app.id)}
+
+              onMaximize={()=>maximizeWindow(app.id)}
+
+              maximized={app.maximized}
+
+            >
+
+              <WindowContent app={app}/>
+
+            </OSWindow>
+
+          )
+
+        ))
+      }
 
       <Terminal/>
     </Loader>

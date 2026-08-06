@@ -12,9 +12,12 @@ export default function Taskbar(){
 
   const menuRef = useRef(null)
 
+
   const {
     search,
-    setSearch
+    setSearch,
+    openWindows,
+    openApp
   } = useTransition()
 
 
@@ -95,6 +98,7 @@ export default function Taskbar(){
       "
     >
 
+
       <motion.div
 
         initial={{
@@ -159,7 +163,9 @@ export default function Taskbar(){
           "
 
         >
+
           🪟
+
         </button>
 
 
@@ -175,8 +181,10 @@ export default function Taskbar(){
           }}
 
           onChange={(e)=>{
+
             setSearch(e.target.value)
             setOpen(true)
+
           }}
 
           placeholder="Search..."
@@ -202,6 +210,57 @@ export default function Taskbar(){
 
 
 
+        {/* Running Applications */}
+
+        <div
+          className="
+            flex
+            gap-2
+            ml-4
+          "
+        >
+
+          {
+            openWindows.map((app)=>(
+
+              <button
+
+                key={`${app.name}-${app.page}`}
+
+                onClick={()=>openApp(app)}
+
+                className="
+                  px-3
+                  h-10
+                  rounded-lg
+                  bg-white/5
+                  border
+                  border-green-400/10
+                  text-zinc-300
+                  hover:text-green-400
+                  hover:bg-green-400/10
+                  transition
+                  text-sm
+                  cursor-pointer
+                "
+
+              >
+
+                {app.icon}
+
+                {" "}
+
+                {app.name}
+
+              </button>
+
+            ))
+          }
+
+        </div>
+
+
+
         {/* Right Side */}
 
         <div
@@ -214,6 +273,7 @@ export default function Taskbar(){
           "
         >
 
+
           <a
             href="https://github.com/cyrolite"
             target="_blank"
@@ -223,7 +283,9 @@ export default function Taskbar(){
               transition
             "
           >
+
             GitHub
+
           </a>
 
 
@@ -236,12 +298,16 @@ export default function Taskbar(){
               transition
             "
           >
+
             LinkedIn
+
           </a>
 
 
           <span>
+
             {time}
+
           </span>
 
 
