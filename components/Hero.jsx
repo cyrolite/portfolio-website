@@ -12,7 +12,6 @@ export default function Hero(){
   const {
     navigate,
     isTransitioning,
-    completeTransition
   } = useTransition()
 
   return(
@@ -37,11 +36,6 @@ export default function Hero(){
         }}
         transition={{
           duration:0.8
-        }}
-        onAnimationComplete={()=>{
-            if(isTransitioning){
-                completeTransition()
-            }
         }}
         className="
           w-full

@@ -4,41 +4,26 @@ import { createContext, useContext, useState } from "react"
 
 const TransitionContext = createContext()
 
-export function TransitionProvider({children}){
+export function TransitionProvider({ children }) {
 
-  const [isTransitioning,setIsTransitioning] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [activePage, setActivePage] = useState("home") // NEW
 
-  const [target,setTarget] = useState(null)
-
-
-  function navigate(section){
-
-    setTarget(section)
+  function navigate(page) {
     setIsTransitioning(true)
 
+    setTimeout(() => {
+      setActivePage(page)      // switch page
+      setIsTransitioning(false)
+    }, 500) // match your animation timing
   }
 
-
-  function completeTransition(){
-
-    const element=document.getElementById(target)
-
-    if(element){
-      element.scrollIntoView({
-        behavior:"smooth"
-      })
-    }
-
-    setIsTransitioning(false)
-  }
-
-
-  return(
+  return (
     <TransitionContext.Provider
       value={{
         isTransitioning,
         navigate,
-        completeTransition
+        activePage // expose this
       }}
     >
       {children}
@@ -46,9 +31,6 @@ export function TransitionProvider({children}){
   )
 }
 
-
-export function useTransition(){
-
+export function useTransition() {
   return useContext(TransitionContext)
-
 }

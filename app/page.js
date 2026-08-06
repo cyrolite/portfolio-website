@@ -1,3 +1,5 @@
+"use client"
+
 import Loader from "@/components/Loader"
 import Background from "@/components/Background"
 import Terminal from "@/components/Terminal"
@@ -6,88 +8,72 @@ import Hero from "@/components/Hero"
 import Skills from "@/components/Skills"
 import Projects from "@/components/Projects"
 import Contact from "@/components/Contact"
-import PageTransition from "@/components/PageTransition"
 import About from "@/components/About"
-import { TransitionProvider } from "@/components/TransitionContext"
+import { TransitionProvider, useTransition } from "@/components/TransitionContext"
+import { AnimatePresence, motion } from "framer-motion"
+
+function MainContent(){
+
+  const { activePage } = useTransition()
+
+  return(
+    <Loader>
+      <Background/>
+
+      <Navbar/>
+
+      <main className="
+        min-h-screen
+      ">
+
+        <AnimatePresence mode="wait">
+
+          <motion.div
+            key={activePage}
+            initial={{
+              opacity:0,
+              y:40
+            }}
+            animate={{
+              opacity:1,
+              y:0
+            }}
+            exit={{
+              opacity:0,
+              y:-40
+            }}
+            transition={{
+              duration:0.5
+            }}
+            className="min-h-screen"
+          >
+
+            {activePage === "home" && <Hero/>}
+
+            {activePage === "about" && <About/>}
+
+            {activePage === "skills" && <Skills/>}
+
+            {activePage === "projects" && <Projects/>}
+
+            {activePage === "contact" && <Contact/>}
+
+          </motion.div>
+
+        </AnimatePresence>
+      </main>
+
+      <Terminal/>
+    </Loader>
+  )
+}
+
 
 export default function Home(){
 
   return(
     <TransitionProvider>
-      <Loader>
-        <Background/>
-
-        <Navbar/>
-
-        <main>
-
-          <PageTransition>
-
-            <section id="home" className="min-h-screen">
-              <Hero/>
-            </section>
-
-            <section 
-              id="about"
-              className="
-                h-screen
-                flex
-                flex-col
-                justify-center
-                overflow-hidden
-              "
-            >
-              <About/>
-            </section>
-
-
-            <section 
-              id="skills"
-              className="
-                h-screen
-                flex
-                flex-col
-                justify-center
-                overflow-hidden
-              "
-            >
-              <Skills/>
-            </section>
-
-
-            <section
-              id="projects"
-              className="
-                min-h-screen
-                flex
-                flex-col
-                justify-center
-                py-20
-              "
-            >
-              <Projects/>
-            </section>
-
-
-            <section
-              id="contact"
-              className="
-                h-screen
-                flex
-                flex-col
-                justify-center
-                overflow-hidden
-              "
-            >
-              <Contact/>
-            </section>
-
-          </PageTransition>
-
-        </main>
-
-        <Terminal/>
-      </Loader>
+      <MainContent/>
     </TransitionProvider>
   )
 }
