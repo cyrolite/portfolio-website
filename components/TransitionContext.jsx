@@ -4,237 +4,95 @@ import { createContext, useContext, useState } from "react"
 
 const TransitionContext = createContext()
 
+function lastVisible(windows) {
+  return windows.findLast(window => !window.minimized)?.id ?? null
+}
 
 export function TransitionProvider({ children }) {
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [activePage, setActivePage] = useState("home")
+  const [loading, setLoading] = useState(false)
+  const [search, setSearch] = useState("")
+  const [{ openWindows, activeWindow }, setDesktop] = useState({ openWindows: [], activeWindow: null })
 
-  const [isTransitioning,setIsTransitioning] = useState(false)
-  const [activePage,setActivePage] = useState("home")
-  const [loading,setLoading] = useState(false)
-
-  const [search,setSearch] = useState("")
-
-  const [openWindows,setOpenWindows] = useState([])
-
-  const [activeWindow,setActiveWindow] = useState(null)
-
-
-
-  function navigate(page){
-
+  function navigate(page) {
     setLoading(true)
     setIsTransitioning(true)
-
-    setTimeout(()=>{
-
+    setTimeout(() => {
       setActivePage(page)
-
       setIsTransitioning(false)
-
-      setTimeout(()=>{
-        setLoading(false)
-      },500)
-
-    },500)
-
+      setTimeout(() => setLoading(false), 500)
+    }, 500)
   }
 
-
-
-  function openApp(app){
-
-    setOpenWindows(prev=>{
-
-      const existing = prev.find(
-        window=>window.page === app.page
-      )
-
-
-      if(existing){
-
-        setActiveWindow(existing.id)
-
-        return prev.map(window=>
-          window.page === app.page
-          ?
-          {
-            ...window,
-            minimized:false
-          }
-          :
-          window
-        )
-
+  function openApp(app) {
+    setDesktop(state => {
+      const existing = state.openWindows.find(window => window.page === app.page)
+      const opened = existing
+        ? { ...existing, minimized: false }
+        : { ...app, id: app.page, minimized: false, maximized: false }
+      return {
+        openWindows: [...state.openWindows.filter(window => window.id !== opened.id), opened],
+        activeWindow: opened.id,
       }
-
-
-      const newWindow = {
-        ...app,
-        id:Date.now(),
-        minimized:false,
-        maximized:false
-      }
-
-
-      setActiveWindow(newWindow.id)
-
-
-      return [
-        ...prev,
-        newWindow
-      ]
-
     })
-
   }
 
-
-
-  function focusWindow(id){
-
-    setActiveWindow(id)
-
+  function focusWindow(id) {
+    setDesktop(state => {
+      if (state.activeWindow === id) return state
+      const focused = state.openWindows.find(window => window.id === id && !window.minimized)
+      if (!focused) return state
+      return {
+        openWindows: [...state.openWindows.filter(window => window.id !== id), focused],
+        activeWindow: id,
+      }
+    })
   }
 
-
-
-  function closeWindow(id){
-
-    setOpenWindows(prev=>
-      prev.filter(
-        window=>window.id !== id
-      )
-    )
-
-
-    if(activeWindow === id){
-      setActiveWindow(null)
-    }
-
+  function closeWindow(id) {
+    setDesktop(state => {
+      const windows = state.openWindows.filter(window => window.id !== id)
+      return { openWindows: windows, activeWindow: state.activeWindow === id ? lastVisible(windows) : state.activeWindow }
+    })
   }
 
-
-
-  function minimizeWindow(id){
-
-    setOpenWindows(prev=>
-
-      prev.map(window=>
-
-        window.id === id
-
-        ?
-        {
-          ...window,
-          minimized:true
-        }
-
-        :
-        window
-
-      )
-
-    )
-
-
-    if(activeWindow === id){
-      setActiveWindow(null)
-    }
-
+  function minimizeWindow(id) {
+    setDesktop(state => {
+      const windows = state.openWindows.map(window => window.id === id ? { ...window, minimized: true } : window)
+      return { openWindows: windows, activeWindow: state.activeWindow === id ? lastVisible(windows) : state.activeWindow }
+    })
   }
 
-
-
-  function restoreWindow(id){
-
-    setOpenWindows(prev=>
-
-      prev.map(window=>
-
-        window.id === id
-
-        ?
-        {
-          ...window,
-          minimized:false
-        }
-
-        :
-        window
-
-      )
-
-    )
-
-
-    setActiveWindow(id)
-
+  function restoreWindow(id) {
+    setDesktop(state => {
+      const restored = state.openWindows.find(window => window.id === id)
+      if (!restored) return state
+      return {
+        openWindows: [...state.openWindows.filter(window => window.id !== id), { ...restored, minimized: false }],
+        activeWindow: id,
+      }
+    })
   }
 
-
-
-  function maximizeWindow(id){
-
-    setOpenWindows(prev=>
-
-      prev.map(window=>
-
-        window.id === id
-
-        ?
-        {
-          ...window,
-          maximized:!window.maximized
-        }
-
-        :
-        window
-
-      )
-
-    )
-
+  function maximizeWindow(id) {
+    setDesktop(state => ({
+      ...state,
+      openWindows: state.openWindows.map(window => window.id === id ? { ...window, maximized: !window.maximized } : window),
+    }))
   }
 
-
-
-  return(
-    <TransitionContext.Provider
-
-      value={{
-
-        isTransitioning,
-        navigate,
-        activePage,
-        loading,
-
-        search,
-        setSearch,
-
-        openWindows,
-        openApp,
-
-        closeWindow,
-        minimizeWindow,
-        restoreWindow,
-        maximizeWindow,
-
-        activeWindow,
-        focusWindow
-
-      }}
-
-    >
-
+  return (
+    <TransitionContext.Provider value={{
+      isTransitioning, navigate, activePage, loading, search, setSearch,
+      openWindows, openApp, closeWindow, minimizeWindow, restoreWindow,
+      maximizeWindow, activeWindow, focusWindow,
+    }}>
       {children}
-
     </TransitionContext.Provider>
   )
 }
 
-
-
-export function useTransition(){
-
+export function useTransition() {
   return useContext(TransitionContext)
-
 }

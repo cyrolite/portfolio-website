@@ -17,6 +17,14 @@ export const metadata = {
     "Nicholas Yap's portfolio showcasing cybersecurity projects, software engineering work, and ML security research.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
+  themeColor: "#050505",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html

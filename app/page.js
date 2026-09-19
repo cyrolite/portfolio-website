@@ -12,6 +12,7 @@ import About from "@/components/About"
 import Resume from "@/components/Resume"
 import SystemCursor from "@/components/SystemCursor"
 import OSWindow from "@/components/OSWindow"
+import ViewportSync from "@/components/ViewportSync"
 import { TransitionProvider, useTransition } from "@/components/TransitionContext"
 
 
@@ -64,6 +65,7 @@ function MainContent(){
 
   return(
     <Loader>
+      <ViewportSync/>
       <SystemCursor/>
 
       <Background/>
@@ -74,7 +76,7 @@ function MainContent(){
 
       <main
         className="
-          min-h-screen
+          min-h-[100svh] md:min-h-screen
         "
       >
 

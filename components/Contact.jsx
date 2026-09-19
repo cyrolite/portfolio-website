@@ -4,11 +4,15 @@ export default function Contact(){
     <section
       id="contact"
       className="
-        min-h-screen
+        min-h-full
+        md:min-h-screen
         flex
         items-center
         justify-center
-        px-6
+        px-0
+        py-2
+        md:px-6
+        md:py-0
       "
     >
 
@@ -20,15 +24,20 @@ export default function Contact(){
         border
         border-green-400/20
         rounded-xl
-        p-10
+        p-4
+        md:p-10
         font-mono
+        min-w-0
+        break-words
       ">
 
         <h2 className="
-          text-4xl
+          text-2xl
+          md:text-4xl
           font-bold
           text-white
-          mb-8
+          mb-6
+          md:mb-8
         ">
           Contact
         </h2>
@@ -36,6 +45,8 @@ export default function Contact(){
 
         <p className="
           text-green-400
+          text-sm
+          md:text-base
           mb-6
         ">
           root@nicholas:~$ contact
@@ -45,8 +56,10 @@ export default function Contact(){
         <div className="
           grid
           md:grid-cols-3
-          gap-4
-          mb-10
+          gap-3
+          md:gap-4
+          mb-6
+          md:mb-10
         ">
 
           <a
@@ -108,6 +121,8 @@ export default function Contact(){
 
         <p className="
           text-green-400
+          text-sm
+          md:text-base
           mb-6
         ">
           root@nicholas:~$ send_message
@@ -120,6 +135,7 @@ export default function Contact(){
           encType="text/plain"
           className="
             grid
+            min-w-0
             md:grid-cols-2
             gap-5
           "
@@ -128,10 +144,15 @@ export default function Contact(){
           <input
             type="text"
             name="Name"
+            autoComplete="name"
+            aria-label="Name"
             placeholder="Name"
             required
             className="
               p-4
+              min-w-0
+              w-full
+              text-base
               rounded-lg
               bg-black/50
               border
@@ -146,10 +167,15 @@ export default function Contact(){
           <input
             type="email"
             name="Email"
+            autoComplete="email"
+            aria-label="Email"
             placeholder="Email"
             required
             className="
               p-4
+              min-w-0
+              w-full
+              text-base
               rounded-lg
               bg-black/50
               border
@@ -163,11 +189,15 @@ export default function Contact(){
 
           <textarea
             name="Message"
+            aria-label="Message"
             rows="6"
             placeholder="Message"
             required
             className="
               md:col-span-2
+              min-w-0
+              w-full
+              text-base
               p-4
               rounded-lg
               bg-black/50

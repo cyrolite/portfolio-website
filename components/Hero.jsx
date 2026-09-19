@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { useTransition } from "./TransitionContext"
@@ -8,18 +7,22 @@ import { useTransition } from "./TransitionContext"
 export default function Hero(){
 
   const {
-    navigate,
     isTransitioning,
   } = useTransition()
 
   return(
     <section className="
       relative
-      min-h-screen
+      min-h-[100svh]
+      md:min-h-screen
       flex
       items-center
       justify-center
-      px-6
+      px-4
+      pt-8
+      pb-[calc(5rem+env(safe-area-inset-bottom))]
+      md:px-6
+      md:py-0
     ">
 
       <motion.div
@@ -43,7 +46,9 @@ export default function Hero(){
           bg-black/40
           backdrop-blur-md
           shadow-2xl
-          p-8
+          p-5
+          sm:p-6
+          md:p-8
           font-mono
         "
       >
@@ -59,8 +64,11 @@ export default function Hero(){
 
 
         <h1 className="
-          text-4xl
+          text-3xl
+          sm:text-4xl
           md:text-6xl
+          leading-tight
+          md:leading-none
           font-bold
           text-white
           mb-4
@@ -71,8 +79,13 @@ export default function Hero(){
 
         <div className="
           text-green-300
-          text-xl
+          min-h-[4.5rem]
+          text-base
+          leading-relaxed
+          sm:text-xl
           md:text-2xl
+          md:min-h-0
+          md:leading-8
           mb-6
         ">
 
@@ -90,6 +103,7 @@ export default function Hero(){
             wrapper="span"
             speed={50}
             repeat={Infinity}
+            cursor={false}
           />
 
           <span className="
@@ -118,6 +132,7 @@ export default function Hero(){
         <div
           className="
             flex
+            flex-wrap
             gap-4
             mt-6
           "
@@ -126,10 +141,16 @@ export default function Hero(){
           <a
             href="https://github.com/cyrolite"
             target="_blank"
+            rel="noopener noreferrer"
 
             className="
               px-5
               py-2
+              min-h-11
+              inline-flex
+              items-center
+              justify-center
+              md:min-h-0
               rounded-lg
               bg-zinc-800
               border
@@ -149,10 +170,16 @@ export default function Hero(){
           <a
             href="https://www.linkedin.com/in/nicholas-yap-b6069b20b/"
             target="_blank"
+            rel="noopener noreferrer"
 
             className="
               px-5
               py-2
+              min-h-11
+              inline-flex
+              items-center
+              justify-center
+              md:min-h-0
               rounded-lg
               bg-blue-600/20
               border
@@ -171,6 +198,9 @@ export default function Hero(){
 
         </div>
 
+        <p className="mt-6 text-sm leading-relaxed text-zinc-400 md:hidden">
+          Tap <span className="text-green-300">Apps</span> below to explore my portfolio.
+        </p>
 
       </motion.div>
 

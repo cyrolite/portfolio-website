@@ -105,6 +105,7 @@ export default function SystemCursor(){
       }}
 
       className="
+        system-cursor
         fixed
         top-0
         left-0

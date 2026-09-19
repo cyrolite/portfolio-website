@@ -64,16 +64,20 @@ export default function Skills(){
 
   return(
     <section className="
-      py-20
-      px-6
+      py-4
+      px-0
+      md:py-20
+      md:px-6
     ">
 
       <h2 className="
-        text-4xl
+        text-2xl
+        md:text-4xl
         font-bold
         text-center
         text-white
-        mb-12
+        mb-6
+        md:mb-12
       ">
         Technical Skills
       </h2>
@@ -84,7 +88,8 @@ export default function Skills(){
         mx-auto
         grid
         md:grid-cols-2
-        gap-8
+        gap-4
+        md:gap-8
       ">
 
         {
@@ -98,7 +103,9 @@ export default function Skills(){
                 border
                 border-green-400/20
                 rounded-xl
-                p-6
+                p-4
+                md:p-6
+                min-w-0
                 font-mono
                 hover:border-green-400/50
                 transition
@@ -107,7 +114,9 @@ export default function Skills(){
 
               <h3 className="
                 text-green-400
-                text-xl
+                text-lg
+                md:text-xl
+                break-words
                 mb-5
               ">
                 {">"} {category.title}
@@ -117,7 +126,8 @@ export default function Skills(){
               <div className="
                 flex
                 flex-wrap
-                gap-3
+                gap-2
+                md:gap-3
               ">
 
                 {
@@ -133,6 +143,8 @@ export default function Skills(){
                         border-green-400/20
                         text-green-200
                         text-sm
+                        max-w-full
+                        break-words
                       "
                     >
                       {skill}

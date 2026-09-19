@@ -38,17 +38,18 @@ export default function Projects(){
   return(
     <section
       id="projects"
-      className="py-20 px-6"
+      className="py-4 px-0 md:py-20 md:px-6"
     >
 
-      <h2 className="text-4xl font-bold text-center mb-10">
+      <h2 className="text-2xl md:text-4xl font-bold text-center mb-6 md:mb-10">
         Projects
       </h2>
 
       <div className="
         grid
         md:grid-cols-2
-        gap-6
+        gap-4
+        md:gap-6
         max-w-5xl
         mx-auto
       ">

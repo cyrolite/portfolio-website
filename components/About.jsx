@@ -32,11 +32,15 @@ export default function About(){
     <section
       id="about"
       className="
-      min-h-screen
+      min-h-full
+      md:min-h-screen
       flex
       items-center
       justify-center
-      px-6
+      px-0
+      py-2
+      md:px-6
+      md:py-0
       "
     >
 
@@ -64,8 +68,15 @@ export default function About(){
         bg-black/40
         backdrop-blur-md
         shadow-2xl
-        p-8
+        p-4
+        md:p-8
         font-mono
+        text-sm
+        leading-relaxed
+        md:text-base
+        md:leading-normal
+        break-words
+        min-w-0
         "
       >
 
@@ -74,7 +85,7 @@ export default function About(){
           lines.map((line,index)=>(
             <div
               key={index}
-              className="mb-6"
+              className="mb-6 last:mb-0 md:last:mb-6"
             >
 
               <p className="text-green-400">

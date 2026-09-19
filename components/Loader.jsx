@@ -47,23 +47,27 @@ export default function Loader({children}){
       flex
       items-center
       justify-center
+      px-4
       bg-black
       font-mono
       text-green-400
     ">
 
       <div className="
-        w-[420px]
+        w-full
+        max-w-[420px]
         border
         border-green-400/30
         rounded-lg
-        p-8
+        p-5
+        md:p-8
         bg-black
         shadow-lg
       ">
 
         <h1 className="
-          text-xl
+          text-lg
+          md:text-xl
           mb-6
           font-bold
         ">

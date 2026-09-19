@@ -23,6 +23,8 @@ export default function ProjectCard({title,description,stack,link}){
         rounded-xl
         p-4
         font-mono
+        min-w-0
+        break-words
         hover:border-green-400/60
         transition
       "
@@ -70,7 +72,10 @@ export default function ProjectCard({title,description,stack,link}){
         target="_blank"
         rel="noopener noreferrer"
         className="
-          inline-block
+          inline-flex
+          items-center
+          min-h-11
+          md:min-h-0
           mt-5
           text-green-400
           hover:text-green-200

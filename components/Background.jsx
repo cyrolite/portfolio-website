@@ -77,7 +77,7 @@ function TerminalColumn({logs,direction}){
 export default function Background(){
 
   return(
-    <div className="
+    <div aria-hidden="true" className="
       fixed
       inset-0
       -z-10
@@ -89,9 +89,9 @@ export default function Background(){
         absolute
         inset-0
         grid
-        grid-cols-2
-        gap-12
-        p-8
+        grid-cols-1 md:grid-cols-2
+        gap-6 md:gap-12
+        p-4 md:p-8
       ">
 
         <TerminalColumn
@@ -99,10 +99,9 @@ export default function Background(){
           direction="up"
         />
 
-        <TerminalColumn
-          logs={logsRight}
-          direction="down"
-        />
+        <div className="hidden md:block">
+          <TerminalColumn logs={logsRight} direction="down"/>
+        </div>
 
       </div>
 
